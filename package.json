@@ -10,7 +10,7 @@
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
-    "build": "node build/build.js"
+    "build": "node build/build.js && zip -q -r -o /Users/lidongdong6/marphy/coder-node.zip /Users/lidongdong6/marphy/coder-node && scp -P 22 -r /Users/lidongdong6/marphy/coder-node.zip root@47.101.165.18:/www/wwwroot/"
   },
   "dependencies": {
     "axios": "^0.18.0",
