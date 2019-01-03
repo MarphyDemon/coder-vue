@@ -1,6 +1,7 @@
 'use strict'
 const path = require('path')
 const utils = require('./utils')
+const PATHS = require('./paths')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
@@ -27,6 +28,12 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      // 自定义路径别名
+      ASSETS: PATHS.SRC.join('assets'),
+      COMPONENTS: PATHS.SRC.join('components'),
+      API: PATHS.SRC.join('fetch'),
+      ROUTER: PATHS.SRC.join('router'),
+      VIEWS: PATHS.SRC.join('views'),
     }
   },
   module: {

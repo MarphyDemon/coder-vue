@@ -29,3 +29,14 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+创建题目
+保存题目
+提交(待审核)题目            审核题目、删除题目
+获取题目列表    
+获得题目详情
+测试代码
+提交代码(判断输出结果是否正确,如果正确,则题目正确解答加1)
+
+
