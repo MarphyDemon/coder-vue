@@ -5,9 +5,10 @@ import App from "./App";
 import router from "./router";
 import axios from 'axios';
 import store from '../store/store'
+import * as filters from './util/filter';
+
 
 Vue.config.productionTip = false;
-
 import elementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 Vue.use(elementUI);
@@ -48,6 +49,8 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
+Object.keys(filters).forEach(k => Vue.filter(k, filters[k]));
+
 // import * as Highcharts from "highcharts";
 // 加载导出模块
 // import * as Exporting from "highcharts/modules/exporting";

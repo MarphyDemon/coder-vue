@@ -39,7 +39,11 @@
               :examples="examples"></question-dec>
           </el-tab-pane>
           <el-tab-pane label="评论" name="comments"></el-tab-pane>
-          <el-tab-pane label="示例答案" name="results"></el-tab-pane>
+          <el-tab-pane label="示例答案" name="results">
+            <div style="white-space: pre;">
+              <span>{{question.question_right_code}}</span>
+            </div>
+          </el-tab-pane>
           <el-tab-pane label="码友解答" name="userResults"></el-tab-pane>
         </el-tabs>
       </el-col>
@@ -76,19 +80,24 @@ def LetterCapitalize(str):
     return newStr
 print(LetterCapitalize("Hello World!!!"))`,
         type: "python",
-        questionTitle: "first"
+        questionTitle: "first",
       },
       result: "",
       questionId: this.$route.query.questionId,
       createId: this.$route.query.createId,
       questionXh: this.$route.query.xh,
+      checkResult: this.$route.query.checkResult,
       activeTab: "des",
       creater: '',
       examples: []
+
     };
   },
   created() {},
   mounted() {
+    if(this.checkResult){
+      this.activeTab = "results"
+    }
     this.getUserName();
     this.getQuestion();
   },

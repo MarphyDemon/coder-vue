@@ -278,7 +278,8 @@ store.dispatch('incrementAction')
 此时便可以在 Action 中进行异步操作.
 
 ```js
-actions: { incrementAsync ({ commit }) {           setTimeout(()=>{
+actions: { incrementAsync ({ commit }) {
+    setTimeout(()=>{
         commit('increment')
         },1000)
     }

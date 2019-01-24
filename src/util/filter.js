@@ -105,3 +105,12 @@ export function twoNumber(value){
     if (!value) { return ''}
     return value.toFixed(2);
 }
+
+export function codeFormat(value){
+    if (!value) { return ''}
+    return value
+    // console.log(value.indexOf('\n'),1)
+    // console.log(value.indexOf('\r'),2)
+    // console.log(value.indexOf('\n\r'),3)
+    // return value.replace(/[\n|\r|\n\r]/g,"\n");
+}

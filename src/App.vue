@@ -2,7 +2,7 @@
   <div id="app">
     <header-bar v-if="urlFlag"></header-bar>
     <router-view></router-view>
-    <footer-bar v-if="urlFlag"></footer-bar>
+    <!-- <footer-bar v-if="urlFlag"></footer-bar> -->
   </div>
 </template>
 

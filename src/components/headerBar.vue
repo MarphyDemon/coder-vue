@@ -32,9 +32,9 @@ export default {
         "$route": "urlChange"
     },
     created() {
-        this.activeIndex = window.location.pathname =='/question'?'/challenge':this.$router.currentRoute.pathname;
     },
     mounted() {
+        this.activeIndex = window.location.pathname =='/question'?'/challenge':this.$router.currentRoute.pathname;
     },
     methods: {
         handleSelect(val){

@@ -115,5 +115,11 @@ export default {
   },
   testCode(params) {
     return fetch(domain + "/api/v1/test/code/create", params, 'post')
+  },
+  submitResult(params) {
+    return fetch(domain + "/api/v1/result/create", params, 'post')
+  },
+  createQuestion(params) {
+    return fetch(domain + "/api/v1/question/create", params, 'post')
   }
 };

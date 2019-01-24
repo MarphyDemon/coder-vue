@@ -2,7 +2,7 @@
   <div>
     <el-container style="height: 680px;">
       <el-aside style="width: 100px;">
-        <el-tabs v-model="activeTab" type="border-card" tab-position="left" style="height: 100%;">
+        <el-tabs v-model="activeTab" type="border-card" tab-position="left" style="height: 100%;" @tab-click="changeGrade">
           <el-tab-pane label="初级挑战" name="primary"></el-tab-pane>
           <el-tab-pane label="中级挑战" name="middle"></el-tab-pane>
           <el-tab-pane label="高级挑战" name="senior"></el-tab-pane>
@@ -11,7 +11,6 @@
       <el-main>
         <question-list 
           :table-data="tableData"
-          v-if="activeTab=='primary'" 
           :current-page="page" 
           :total="total" 
           :page-size="pageSize"
@@ -24,11 +23,10 @@
 </template>
 <script>
 import API from "../fetch/api.js";
-import HeaderBar from "COMPONENTS/headerBar";
 import questionList from "COMPONENTS/questionList";
 
 export default {
-  components: { HeaderBar, questionList },
+  components: { questionList },
   data() {
     return {
       tableData: [],
@@ -44,7 +42,7 @@ export default {
   methods: {
     getQuestionList() {
       let option = {
-        question_grade: this.activeTab=='primary'?'青铜':this.activeTab=='primary'?"白银":"黄金",
+        question_grade: this.activeTab=='primary'?'青铜':this.activeTab=='middle'?"白银":"黄金",
         page: this.page,
         page_size: this.pageSize
       };
@@ -66,6 +64,9 @@ export default {
     },
     changeCurPage(val) {
       this.page = val;
+      this.getQuestionList();
+    },
+    changeGrade(){
       this.getQuestionList();
     }
   }

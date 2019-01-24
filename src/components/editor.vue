@@ -125,7 +125,8 @@ export default {
       testInput: '',
       testOutput: '',
       activeTest: 'testResult',
-      username: store.state.username
+      username: store.state.username,
+      result_status: false
     };
   },
   watch: {
@@ -164,15 +165,18 @@ export default {
       this.initEditor();
     },
     testCode() {
-      let test_code = this.codesCopy.replace(/^\n+|\n+$/g,"");
+      let test_code = this.codesCopy || this.codes;
+      test_code = test_code.replace(/^\n+|\n+$/g,"");
       let option = {
         question_id: this.question.id,
         question_title: this.question.question_title,
-        result_code: test_code
+        result_code: test_code,
+        question_right_code: this.question.question_right_code
       }
       API.testCode(option).then(res => {
         if (res.code == "200") {
           let data = res.data.runRes;
+          this.result_status = res.data.result_status
           if (data.stderr) {
             this.testOutput = data.stderr;
           } else {
@@ -184,7 +188,26 @@ export default {
       });
     },
     submitCode() {
-      
+      let test_code = this.codesCopy || this.codes;
+      test_code = test_code.replace(/^\n+|\n+$/g,"");
+      let option = {
+        question_id: this.question.id,
+        result_code: test_code,
+        result_status: this.result_status?1:0,
+        is_own: 0
+      }
+      API.submitResult(option).then(res => {
+        if (res.code == "200") {
+          let data = res.data.runRes;
+          if (data.stderr) {
+            this.testOutput = data.stderr;
+          } else {
+            this.testOutput = data.stdout;
+          }
+        } else {
+          console.log(res.body);
+        }
+      });
     }
   }
 };
